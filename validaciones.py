@@ -36,6 +36,3 @@ def movements_reg(account: dict, movement_type: str, amount: float, new_balance:
         "new_balance": new_balance
     }
     account["movements"].append(movements)
-
-
-

@@ -85,7 +85,6 @@ def withdraw(accounts):
         
         for i in accounts:
             if i["account_num"] == account:
-                num_found = True
                 monto = insert_monto("\nInserta el monto a retirar: ")
                 while monto < 50:
                     print("\nRetiro minimo $50, intente nuevamente")
@@ -95,6 +94,7 @@ def withdraw(accounts):
                 else: 
                     i["balance"] -= monto
                     movements_reg(i, "Retiro", monto, i["balance"])
+                    num_found = True
         
         if not num_found:
             print("El número de cuenta ingresado, no existe...")
@@ -162,7 +162,7 @@ def show_movements(accounts):
                     print("No hay movimientos registrados.")
                 else:
                     for b in i["movements"]:
-                        print(f"{b['movement_type']} | {b['amount']} | ${b['new_balance']:.2f}\n")
+                        print(f"{b['movement_type']} | {b['amount']:.2f} | ${b['new_balance']:.2f}\n")
         
         if not account_found:
             print("Cuenta no encontrada, intente nuevamente...\n")
