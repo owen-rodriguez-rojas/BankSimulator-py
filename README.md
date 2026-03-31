@@ -15,7 +15,7 @@ Consolidar los conocimientos de Python aplicando estructuras de datos más compl
 ## ⚙️ Funcionalidades
 
 ### ➕ Crear cuenta
-- Solicita nombre del titular
+- Solicita nombre y apellido del titular
 - Solicita saldo inicial (mínimo $100)
 - Genera un número de cuenta único automático
 - Registra la cuenta en el sistema
@@ -24,23 +24,24 @@ Consolidar los conocimientos de Python aplicando estructuras de datos más compl
 - Lista todas las cuentas registradas
 - Muestra:
   - Número de cuenta
-  - Titular
+  - Nombre y apellido del titular
   - Saldo actual
 
 ### 💰 Depositar
 - Selecciona cuenta por número de cuenta
-- Solicita monto a depositar (debe ser mayor a $0)
+- Solicita monto a depositar (mínimo $100)
 - Actualiza el saldo
 - Registra el movimiento en el historial
 
 ### 💸 Retirar
 - Selecciona cuenta por número de cuenta
-- Solicita monto a retirar (debe ser mayor a $0)
+- Solicita monto a retirar (mínimo $50)
 - Valida que haya saldo suficiente
 - Actualiza el saldo
 - Registra el movimiento en el historial
 
 ### 🔄 Transferir
+- Requiere mínimo 2 cuentas registradas
 - Selecciona cuenta origen por número de cuenta
 - Selecciona cuenta destino por número de cuenta
 - Valida que origen y destino no sean la misma cuenta
@@ -52,7 +53,7 @@ Consolidar los conocimientos de Python aplicando estructuras de datos más compl
 ### 📜 Historial de movimientos
 - Selecciona cuenta por número de cuenta
 - Muestra todos los movimientos de esa cuenta:
-  - Tipo de movimiento (Depósito / Retiro / Transferencia enviada / Transferencia recibida)
+  - Tipo de movimiento (Depósito / Retiro / Transferencia Enviada / Transferencia Recibida)
   - Monto
   - Saldo resultante
 
@@ -67,14 +68,15 @@ Consolidar los conocimientos de Python aplicando estructuras de datos más compl
 Cada cuenta se representa como un diccionario con la siguiente estructura:
 ```python
 {
-    "numero_cuenta": 1001,
-    "titular": "Owen Rojas",
-    "saldo": 5000.0,
-    "historial": [
+    "account_num": 1001,
+    "name": "Owen",
+    "surname": "Rojas",
+    "balance": 5000.0,
+    "movements": [
         {
-            "tipo": "Depósito",
-            "monto": 1000.0,
-            "saldo_resultante": 5000.0
+            "movement_type": "Deposito",
+            "amount": 1000.0,
+            "new_balance": 5000.0
         }
     ]
 }
@@ -110,9 +112,12 @@ El sistema incluye:
 - Diccionarios
 - Listas dentro de diccionarios
 - Funciones (`def`)
+- Type hints
 - Condicionales (`if`, `elif`, `else`)
 - Ciclos (`while`, `for`)
+- For anidados
 - Manejo de archivos (`json`)
+- Manejo de excepciones (`try/except`)
 - Validación de datos
 - Modularización del código
 
@@ -120,12 +125,12 @@ El sistema incluye:
 
 ## 📂 Estructura del proyecto
 ```
-SimuladorBanco-py/
-├── main.py            → Menú principal del sistema
-├── funciones.py       → Lógica del programa (crear, mostrar, depositar, retirar, transferir, historial)
-├── validaciones.py    → Funciones auxiliares de validación de entradas
-├── data.json          → Almacenamiento de cuentas
-└── README.md          → Documentación del proyecto
+BankSimulator-py/
+├── menu.py          → Menú principal del sistema
+├── functions.py     → Lógica del programa (crear, mostrar, depositar, retirar, transferir, historial)
+├── validaciones.py  → Funciones auxiliares de validación de entradas
+├── clients.json     → Almacenamiento de cuentas
+└── README.md        → Documentación del proyecto
 ```
 
 ---
@@ -134,42 +139,32 @@ SimuladorBanco-py/
 
 1. Clonar el repositorio:
 ```bash
-   git clone https://github.com/owen-rodriguez-rojas/SimuladorBanco-py
+   git clone https://github.com/owen-rodriguez-rojas/BankSimulator-py
 ```
 
 2. Entrar al proyecto:
 ```bash
-   cd SimuladorBanco-py
+   cd BankSimulator-py
 ```
 
 3. Ejecutar el programa:
 ```bash
-   python main.py
+   python menu.py
 ```
 
 ---
 
-## 💡 Pistas para el desarrollo
+## 🎓 Aprendizajes
 
-- El número de cuenta puede empezar en 1001 e incrementarse automáticamente igual que hiciste con los IDs.
-- El saldo y los montos deben ser `float`, no `int`, para manejar centavos.
-- Para validar montos usa una función auxiliar en `validaciones.py` similar a `insert_id_or_num` pero que acepte decimales. Investiga `float()` y cómo manejar excepciones con `try/except`.
-- El historial es simplemente una lista de diccionarios dentro de cada cuenta. Cada vez que haya un movimiento, haces `append` de un nuevo diccionario al historial de esa cuenta.
-- En la transferencia necesitas encontrar dos cuentas al mismo tiempo. Piensa cómo reutilizar tu lógica de búsqueda por ID.
-- Reutiliza tu `validaciones.py` del ToDoList como base.
-
----
-
-## 🎓 Aprendizajes esperados
-
-Durante este proyecto desarrollarás habilidades como:
+Durante este proyecto se desarrollaron habilidades como:
 
 - Manejo de estructuras de datos anidadas (listas dentro de diccionarios)
 - Relaciones entre entidades (movimiento pertenece a una cuenta)
 - Validaciones más complejas (saldo suficiente, cuentas distintas)
-- Manejo de números decimales
-- Manejo básico de excepciones con `try/except`
+- Manejo de números decimales con `float`
+- Manejo de excepciones con `try/except`
 - Lógica de negocio aplicada
+- Organización modular del código
 
 ---
 
