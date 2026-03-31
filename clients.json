@@ -1,1 +1,43 @@
-[]
+[
+    {
+        "account_num": 1001,
+        "name": "Owen",
+        "surname": "Rojas",
+        "balance": 1100.0,
+        "movements": [
+            {
+                "movement_type": "Deposito",
+                "amount": 450.0,
+                "new_balance": 750.0
+            },
+            {
+                "movement_type": "Retiro",
+                "amount": 150.0,
+                "new_balance": 600.0
+            },
+            {
+                "movement_type": "Transferencia Recibida",
+                "amount": 500.0,
+                "new_balance": 1100.0
+            }
+        ]
+    },
+    {
+        "account_num": 1002,
+        "name": "Misael",
+        "surname": "Rodriguez",
+        "balance": 600.5,
+        "movements": [
+            {
+                "movement_type": "Deposito",
+                "amount": 100.5,
+                "new_balance": 1100.5
+            },
+            {
+                "movement_type": "Transferencia Enviada",
+                "amount": 500.0,
+                "new_balance": 600.5
+            }
+        ]
+    }
+]

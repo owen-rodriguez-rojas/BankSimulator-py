@@ -4,7 +4,7 @@ from validaciones import insert_monto, insert_text, insert_account_num, movement
 
 def create_account(accounts):
     name = insert_text("Nombre: ")
-    surname = insert_text("Apellido :")
+    surname = insert_text("Apellido: ")
     balance = insert_monto("Saldo inicial (min. $100): ")
     
     while balance < 100:
@@ -37,7 +37,7 @@ def show_accounts(accounts):
         return
     else:
         for i in accounts:
-            print(f"{i['account_num']} | {i['name']} | {i['surname']} | {i['balance']:.2f}")
+            print(f"{i['account_num']} | {i['name']} | {i['surname']} | ${i['balance']:.2f}")
 
 def deposit(accounts):
     if not accounts:
@@ -104,6 +104,10 @@ def transfer(accounts):
         print("No hay usuarios registrados.")
         return
     
+    if len(accounts) < 2:
+        print("No hay suficientes clientes en el sistema...")
+        return
+    
     show_accounts(accounts)
     
     origin_found = False
@@ -153,8 +157,8 @@ def show_movements(accounts):
     account_found = False
     while not account_found:
         show_accounts(accounts)
-        print("Selecciona una cuenta usando el número de cuenta")    
-        account = insert_account_num("Número de cuenta: ")
+        print("Selecciona una cuenta usando el número de cuenta\n")    
+        account = insert_account_num("\nNúmero de cuenta: ")
         for i in accounts:
             if i["account_num"] == account:
                 account_found = True
@@ -162,7 +166,7 @@ def show_movements(accounts):
                     print("No hay movimientos registrados.")
                 else:
                     for b in i["movements"]:
-                        print(f"{b['movement_type']} | {b['amount']:.2f} | ${b['new_balance']:.2f}\n")
+                        print(f"{b['movement_type']} | Monto: ${b['amount']:.2f} | Saldo: ${b['new_balance']:.2f}\n")
         
         if not account_found:
             print("Cuenta no encontrada, intente nuevamente...\n")
