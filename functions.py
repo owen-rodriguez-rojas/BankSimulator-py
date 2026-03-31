@@ -1,3 +1,4 @@
+import json
 from validaciones import insert_monto, insert_text, insert_account_num, movements_reg
 
 
@@ -169,8 +170,13 @@ def show_movements(accounts):
     
     
 
-def cargar_datos(accounts):
-    pass
+def cargar_datos():
+    try:
+        with open("clients.json", "r") as archivo: #Abre archivo en modo lectura
+            return json.load(archivo)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
 
 def guardar_datos(accounts):
-    pass
+        with open("clients.json", "w")as archivo: #Abre archivo en modo escritura
+            json.dump(accounts, archivo, indent=4)
