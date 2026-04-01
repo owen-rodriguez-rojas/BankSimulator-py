@@ -15,7 +15,7 @@ while True:
     opc = input("Digite la opcion deseada: \n")
     while not opc.isdigit() or int(opc) < 1 or int(opc) > 7:
         print("Valor invalido, intentar nuevamente...")
-        opc = input("Digite la opcion deseada: \n")
+        opc = input("Digite la opcion desead4a: \n")
     opc = int(opc)
     
     if opc == 1:
